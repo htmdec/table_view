@@ -84,7 +84,6 @@ var TableWidget = View.extend({
             }).done((data) => {
                 const app = this;
                 this.workbook.loadAsync(data, function (workbook) {
-                    console.log('workbook loaded');
                     app.data = workbook;
                     app.state = app.states.DATA_READY;
                     app.render();
@@ -100,7 +99,6 @@ var TableWidget = View.extend({
                 this.render();
                 return data;
             }, (error) => {
-                console.error(error);
                 this.state = this.states.DATA_ERROR;
                 this.render();
                 return null;
@@ -138,7 +136,6 @@ var TableWidget = View.extend({
         } else if (this.state === this.states.DATA_LOADING) {
             message = 'Loading...';
         }
-        console.log(this.workbook !== null ? true : false);
         this.$el.html(TableWidgetTemplate({
             state: this.state,
             states: this.states,
