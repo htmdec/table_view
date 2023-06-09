@@ -9,12 +9,14 @@ wrap(ItemView, 'render', function (render) {
             this.tableWidget.remove();
         }
 
-        this.tableWidget = new TableWidget({
-            el: $('<div>', {class: 'g-table-view-container'})
-                .insertAfter(this.$('.g-item-info')),
-            files: this.fileListWidget.collection,
-            parentView: this
-        });
+        if (this.fileListWidget.collection.length > 0) {
+            this.tableWidget = new TableWidget({
+                el: $('<div>', {class: 'g-table-view-container'})
+                    .insertAfter(this.$('.g-item-info')),
+                files: this.fileListWidget.collection,
+                parentView: this
+            });
+        }
     });
     return render.call(this);
 });
